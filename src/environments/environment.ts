@@ -4,7 +4,16 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:4200'
+  apiUrl: 'http://localhost:4200',
+  firebaseConfig: {
+    apiKey: "AIzaSyAr03KJP7TJauZE4aNuizw8rDS19VARrN8",
+    authDomain: "angular-qlmnk.firebaseapp.com",
+    databaseURL: "https://angular-qlmnk.firebaseio.com",
+    projectId: "angular-qlmnk",
+    storageBucket: "",
+    messagingSenderId: "309898745141",
+    appId: "1:309898745141:web:376a0fd94f016421"
+  }
 };
 
 /*

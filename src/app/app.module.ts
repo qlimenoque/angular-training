@@ -14,6 +14,9 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { AngularFireModule } from '@angular/fire';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -38,7 +41,9 @@ export const appRoutingModule = RouterModule.forRoot(routes);
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    appRoutingModule
+    appRoutingModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   returnUri: string;
   error = '';
 
+  email: string;
+  password: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,6 +28,17 @@ export class LoginComponent implements OnInit {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
+  }
+
+  signUp() {
+    this.authenticationService.SignUp(this.email, this.password);
+    this.email = '';
+    this.password = '';
+  }
+
+  signIn() {
+    this.email = '';
+    this.password = '';
   }
 
   ngOnInit() {
@@ -39,25 +52,25 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-    .pipe(first())
-    .subscribe(
-      data => {
-        this.router.navigate([this.returnUri]);
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
-      }
-    );
-  }
+  // onSubmit() {
+  //   this.submitted = true;
+  //
+  //   if (this.loginForm.invalid) {
+  //     return;
+  //   }
+  //
+  //   this.loading = true;
+  //   this.authenticationService.login(this.f.username.value, this.f.password.value)
+  //   .pipe(first())
+  //   .subscribe(
+  //     data => {
+  //       this.router.navigate([this.returnUri]);
+  //     },
+  //     error => {
+  //       this.error = error;
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
 
 }
