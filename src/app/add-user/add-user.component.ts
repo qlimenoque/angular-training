@@ -27,8 +27,7 @@ export class AddUserComponent implements OnInit {
     private http: HttpClient,
     private authenticationService: AuthenticationService,
     private userService: UserService
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.addUserForm = this.formBuilder.group(
@@ -62,7 +61,6 @@ export class AddUserComponent implements OnInit {
     .pipe(first())
     .subscribe(
       data => {
-        alert('Added!');
         this.router.navigate(['/users']);
       }, error => {
         this.loading = false;

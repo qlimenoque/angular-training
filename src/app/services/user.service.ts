@@ -18,4 +18,9 @@ export class UserService {
   newUser(user: User) {
     return this.http.post(`${environment.apiUrl}/users/addUser`, user);
   }
+
+  delete(id) {
+    console.log('Delete service works');
+    return this.http.delete(`${environment.apiUrl}/users/${id}`);
+  }
 }

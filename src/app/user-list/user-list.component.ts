@@ -23,4 +23,16 @@ export class UserListComponent implements OnInit {
       this.users = users;
     });
   }
+
+  deleteUser(id: number) {
+    console.log('button works');
+    console.log(id);
+    return this.userService.delete(id);
+  }
+
+  private loadAllUsers() {
+    this.userService.getAll()
+    .pipe(first())
+    .subscribe(users => this.users = users);
+  }
 }

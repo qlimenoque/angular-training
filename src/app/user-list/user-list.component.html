@@ -24,9 +24,12 @@
           Gender: {{user.gender}} <br/>
           <span *ngIf="user.token">Token: {{user.token}} </span> <br/>
         </p>
-        <a class="secondary-content">
-          <i class="material-icons">edit</i>
+  
+        <div class="secondary-content"><a>
+          <i class="material-icons btn-small edit-button" (click)="editUser(user.id)">edit</i>
+          <i class="material-icons btn-small delete-button" (click)="deleteUser(user.id)">delete</i>
         </a>
+        </div>
         <hr>
       </li>
     </ul>
