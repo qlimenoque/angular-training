@@ -10,6 +10,10 @@ $inputColor: red;
   line-height: 0;
 }
 
+.input-field label {
+  padding: 10px;
+}
+
 .input-field input:focus {
   border-bottom: 1px solid $inputColor;
   box-shadow: 0 1px 0 0 $inputColor;
