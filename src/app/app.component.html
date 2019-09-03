@@ -1,16 +1,18 @@
 <!-- nav -->
 <nav class="nav-wrapper black" *ngIf="currentUser">
-    <ul class="left">
-      <li><a routerLink="/">Home</a></li>
-      <li><a class="waves-effect waves-teal" routerLink="/users">Users</a></li>
-      <li><a routerLink="/about">About</a></li>
-    </ul>
+  <ul class="left">
+    <li><a class="btn black" routerLink="/">Home</a></li>
+    <li>
+      <a class="waves-effect waves-teal btn black" routerLink="/users">
+        Users
+      </a>
+    <li><a class="btn black" routerLink="/about">About</a></li>
+  </ul>
   <ul class="right">
     <li><a class="red" (click)="logout()">Logout</a></li>
   </ul>
 </nav>
 
-<!-- main app container -->
 <div class="container">
   <router-outlet></router-outlet>
 </div>
