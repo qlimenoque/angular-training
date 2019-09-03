@@ -5,11 +5,10 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../models/user';
 
-const users: User[] = [
-  { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' },
-  { id: 2, username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Parker' }
-  ];
-
+export const users: User[] = [
+  { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User', age: 21, gender: 'Female' },
+  { id: 2, username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Parker', age: 25, gender: 'Male' }
+];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -29,6 +28,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return authenticate();
         case url.endsWith('/users') && method === 'GET':
           return userList();
+        case url.endsWith('/users/addUser') && method === 'POST':
+          return addUser();
         default:
           return next.handle(request);
       }
@@ -55,6 +56,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return unauthorized();
       }
       return ok(users);
+    }
+
+    function addUser() {
+      const user = body;
+
+      if (users.find( x=> x.username === user.username)) {
+        return error('Username "' + user.username + '" is already taken');
+      }
+
+      user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+      users.push(user);
+      localStorage.setItem('users', JSON.stringify(users));
+      return ok();
     }
 
     // helper functions
