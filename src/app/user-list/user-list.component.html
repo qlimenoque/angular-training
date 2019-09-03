@@ -1,0 +1,9 @@
+<div>
+  <div *ngIf="loading" class="spinner-border spinner-border-sm">
+    <ul>
+      <li *ngFor="let user of users">
+        Login: {{user.username}} + {{user.firstName}} {{user.lastName}}
+      </li>
+    </ul>
+  </div>
+</div>
