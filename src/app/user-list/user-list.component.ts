@@ -21,9 +21,6 @@ export class UserListComponent implements OnInit {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.loading = false;
       this.users = users;
-      users.forEach(x => {
-        console.log(x.firstName + ' ' + x.lastName);
-      });
     });
   }
 }

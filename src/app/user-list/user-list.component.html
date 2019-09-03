@@ -1,8 +1,27 @@
 <div>
-  <div *ngIf="loading" class="spinner-border spinner-border-sm">
+  <h4>Users</h4>
+  <div class="collection">
+    <div *ngIf="loading" class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+      </div>
+    </div>
     <ul>
-      <li *ngFor="let user of users">
-        Login: {{user.username}} + {{user.firstName}} {{user.lastName}}
+      <li class="collection-item-avatar"
+          *ngFor="let user of users">
+        <i class="material-icons circle">account_box</i>
+        <a class="secondary-content">
+          <i class="material-icons">edit</i>
+        </a>
+        <p>Login: {{user.username}} <br/>
+           Name: {{user.firstName}} {{user.lastName}}</p>
+        <hr>
       </li>
     </ul>
   </div>

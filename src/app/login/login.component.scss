@@ -1,0 +1,16 @@
+$inputColor: red;
+
+.login-form {
+  width: 250px;
+  margin: 40px auto;
+}
+
+.login-button {
+  margin: 8px;
+  line-height: 0;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid $inputColor;
+  box-shadow: 0 1px 0 0 $inputColor;
+}

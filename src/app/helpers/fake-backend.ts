@@ -6,7 +6,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../models/user';
 
 const users: User[] = [
-  { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }
+  { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' },
+  { id: 2, username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Parker' }
   ];
 
 
