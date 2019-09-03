@@ -12,17 +12,25 @@
       </div>
       </div>
     </div>
+    
     <ul>
-      <li class="collection-item-avatar"
+      <li class="collection-item avatar"
           *ngFor="let user of users">
         <i class="material-icons circle">account_box</i>
+        <span class="title red white-text darken-1">{{user.username}}</span>
+        <p>
+          Name: {{user.firstName}} {{user.lastName}} <br/>
+          Age: {{user.age}} <br/>
+          Gender: {{user.gender}} <br/>
+          <span *ngIf="user.token">Token: {{user.token}} </span> <br/>
+        </p>
         <a class="secondary-content">
           <i class="material-icons">edit</i>
         </a>
-        <p>Login: {{user.username}} <br/>
-           Name: {{user.firstName}} {{user.lastName}}</p>
         <hr>
       </li>
     </ul>
   </div>
+  <a class="btn-floating btn-large waves-effect waves-light red right" routerLink="/users/add"><i class="material-icons">add</i></a>
+
 </div>
