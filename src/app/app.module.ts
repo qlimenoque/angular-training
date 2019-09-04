@@ -14,11 +14,13 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
+  { path: 'users/edit/:id', component: EditUserComponent, canActivate: [AuthGuard]},
   { path: 'users/add', component: AddUserComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '' }
 ];
@@ -31,7 +33,8 @@ export const appRoutingModule = RouterModule.forRoot(routes);
     HomeComponent,
     LoginComponent,
     AddUserComponent,
-    UserListComponent
+    UserListComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
