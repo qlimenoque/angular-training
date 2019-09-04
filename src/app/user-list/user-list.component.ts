@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.delete(id).subscribe(() => { }, error => console.log(error));
+    this.userService.delete(id).subscribe(() => { });
     this.users = this.users.filter(x => x.id !== id);
   }
 }

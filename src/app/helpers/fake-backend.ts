@@ -26,8 +26,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       switch (true) {
         case url.endsWith('/users/authenticate') && method === 'POST':
           return authenticate();
-        case url.endsWith('/users/addUser') && method === 'POST':
-          return addUser();
         default:
           return next.handle(request);
       }
@@ -54,19 +52,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return unauthorized();
       }
       return ok(users);
-    }
-
-    function addUser() {
-      const user = body;
-
-      if (users.find( x => x.username === user.username)) {
-        return error('Username "' + user.username + '" is already taken');
-      }
-
-      user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
-      users.push(user);
-      localStorage.setItem('users', JSON.stringify(users));
-      return ok();
     }
 
     // helper functions
