@@ -15,6 +15,10 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  private getUsers() {
     this.loading = true;
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.loading = false;
@@ -23,14 +27,7 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    console.log('button works', id);
-    this.userService.delete(id);
-    const index = this.users.indexOf(id);
-    if (index !== -1) {
-      return this.users.splice(index, 1);
-    }
+    this.userService.delete(id).subscribe(() => { }, error => console.log(error));
+    this.users = this.users.filter(x => x.id !== id);
   }
-
-
-
 }
