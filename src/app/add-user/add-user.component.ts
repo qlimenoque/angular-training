@@ -54,17 +54,14 @@ export class AddUserComponent implements OnInit {
       return;
     }
 
-    console.log('before subscribe');
-
     this.loading = true;
     this.userService.newUser(this.addUserForm.value)
     .pipe(first())
     .subscribe(
       data => {
-        this.router.navigate(['/users']);
+        this.router.navigateByUrl('/users');
       }, error => {
         this.loading = false;
-        alert(error);
       }
     );
   }

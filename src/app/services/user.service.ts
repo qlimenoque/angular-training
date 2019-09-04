@@ -20,8 +20,6 @@ export class UserService {
   }
 
   delete(id) {
-    console.log('Delete service works');
-    console.log(`${environment.apiUrl}/users/${id}`);
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
   }
 }
