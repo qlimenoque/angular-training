@@ -26,12 +26,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       switch (true) {
         case url.endsWith('/users/authenticate') && method === 'POST':
           return authenticate();
-        case url.endsWith('/users') && method === 'GET':
-          return userList();
         case url.endsWith('/users/addUser') && method === 'POST':
           return addUser();
-        case url.match(/\/users\/\d+$/) && method === 'DELETE':
-          return deleteUser();
         default:
           return next.handle(request);
       }
@@ -71,19 +67,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));
       return ok();
-    }
-
-    function deleteUser() {
-      if (!isLoggedIn()) {
-        return unauthorized();
-      }
-      console.log(getIdFromUrl());
-      users.filter(x => x.id !== getIdFromUrl());
-    }
-
-    function getIdFromUrl() {
-      const urlParts = url.split('/');
-      return parseInt(urlParts[urlParts.length - 1]);
     }
 
     // helper functions
