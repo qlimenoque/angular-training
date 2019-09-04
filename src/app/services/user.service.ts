@@ -16,11 +16,12 @@ export class UserService {
   }
 
   newUser(user: User) {
-    return this.http.post(`${environment.apiUrl}/users/addUser`, user);
+    return this.http.post(`${environment.apiUrl}/users`, user);
   }
 
   delete(id) {
     console.log('Delete service works');
-    return this.http.delete(`${environment.apiUrl}/users/${id}`);
+    console.log(`${environment.apiUrl}/users/${id}`);
+    return this.http.delete(`${environment.apiUrl}/users/${id}`).subscribe(res => {});
   }
 }

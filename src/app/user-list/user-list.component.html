@@ -17,17 +17,17 @@
       <li class="collection-item avatar"
           *ngFor="let user of users">
         <i class="material-icons circle">account_box</i>
-        <span class="title red white-text darken-1">{{user.username}}</span>
+        <span class="title red-text darken-1">{{user.id}}. {{user.username}}</span>
         <p>
-          Name: {{user.firstName}} {{user.lastName}} <br/>
-          Age: {{user.age}} <br/>
-          Gender: {{user.gender}} <br/>
+          <span class="blue-grey-text">Name:</span> {{user.firstName}} {{user.lastName}} <br/>
+          <span class="blue-grey-text">Age: </span>{{user.age}} <br/>
+          <span class="blue-grey-text">Gender</span>: {{user.gender}} <br/>
           <span *ngIf="user.token">Token: {{user.token}} </span> <br/>
         </p>
-  
+        
         <div class="secondary-content"><a>
-          <i class="material-icons btn-small edit-button" (click)="editUser(user.id)">edit</i>
-          <i class="material-icons btn-small delete-button" (click)="deleteUser(user.id)">delete</i>
+          <i class="material-icons btn-small red edit-button" (click)="editUser(user.id)">edit</i>
+          <i class="material-icons btn-small red delete-button" (click)="deleteUser(user.id)">delete</i>
         </a>
         </div>
         <hr>
