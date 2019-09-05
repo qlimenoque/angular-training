@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../services/authentication.service';
 import {UserService} from '../services/user.service';
 import {Subscription} from 'rxjs';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -61,6 +62,13 @@ export class EditUserComponent implements OnInit {
       gender: this.editUserForm.controls.gender.value
     };
 
-    return this.userService.updateUser(this.queryId, body);
+    this.userService.updateUser(this.queryId, body).pipe(first())
+    .subscribe(
+      data => {
+        this.router.navigateByUrl('/users');
+      }, error => {
+        this.loading = false;
+      }
+    );
   }
 }
