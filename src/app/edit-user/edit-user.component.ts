@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {AuthenticationService} from '../services/authentication.service';
 import {UserService} from '../services/user.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,7 +18,8 @@ export class EditUserComponent implements OnInit {
   error = '';
   loading = false;
   user: User;
-  queryId = this.route.params.subscribe(params => params.id);
+  queryId: number;
+  paramsSubscribe: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,9 +41,9 @@ export class EditUserComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
       }
     );
+    this.paramsSubscribe = this.route.params.subscribe(params => this.queryId = params.id);
 
-    const query = this.userService.getUser(this.queryId);
-    this.userService.getUser(1).subscribe(res => {
+    this.userService.getUser(this.queryId).subscribe(res => {
       this.editUserForm.controls.username.setValue(res.username);
       this.editUserForm.controls.firstName.setValue(res.firstName);
       this.editUserForm.controls.lastName.setValue(res.lastName);
@@ -58,6 +60,7 @@ export class EditUserComponent implements OnInit {
       age: this.editUserForm.controls.age.value,
       gender: this.editUserForm.controls.gender.value
     };
-    console.log(this.userService.updateUser(1, body));
+
+    return this.userService.updateUser(this.queryId, body);
   }
 }

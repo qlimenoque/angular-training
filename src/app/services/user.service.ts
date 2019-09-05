@@ -28,8 +28,6 @@ export class UserService {
   }
 
   updateUser(id, body) {
-    console.log(id);
-    return this.http.put<User>(`${environment.apiUrl}/users/${id}&`,
-      `firstName=${body.firstName}&lastName=${body.lastName}&age=${body.age}&gender=${body.gender}`);
+    this.http.put(`${environment.apiUrl}/users/${id}`, body).subscribe();
   }
 }
