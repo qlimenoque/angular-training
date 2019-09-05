@@ -22,4 +22,14 @@ export class UserService {
   delete(id) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
   }
+
+  getUser(id) {
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}}`);
+  }
+
+  updateUser(id, body) {
+    console.log(id);
+    return this.http.put<User>(`${environment.apiUrl}/users/${id}&`,
+      `firstName=${body.firstName}&lastName=${body.lastName}&age=${body.age}&gender=${body.gender}`);
+  }
 }

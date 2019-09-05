@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
@@ -15,8 +15,9 @@ export class EditUserComponent implements OnInit {
   editUserForm: FormGroup;
   submitted = false;
   error = '';
-  returnUri: string;
   loading = false;
+  user: User;
+  queryId = this.route.params.subscribe(params => params.id);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +39,25 @@ export class EditUserComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
       }
     );
+
+    const query = this.userService.getUser(this.queryId);
+    this.userService.getUser(1).subscribe(res => {
+      this.editUserForm.controls.username.setValue(res.username);
+      this.editUserForm.controls.firstName.setValue(res.firstName);
+      this.editUserForm.controls.lastName.setValue(res.lastName);
+      this.editUserForm.controls.age.setValue(res.age);
+      this.editUserForm.controls.gender.setValue(res.gender);
+      this.editUserForm.controls.password.setValue(res.password);
+    });
   }
 
+  onSubmit() {
+    const body = {
+      firstName: this.editUserForm.controls.firstName.value,
+      lastName: this.editUserForm.controls.lastName.value,
+      age: this.editUserForm.controls.age.value,
+      gender: this.editUserForm.controls.gender.value
+    };
+    console.log(this.userService.updateUser(1, body));
+  }
 }

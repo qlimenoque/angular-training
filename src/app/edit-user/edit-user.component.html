@@ -4,32 +4,32 @@
     <form class="add-form" [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" formControlName="firstName" class="validate">
-          <label for="first_name">First Name</label>
+          <input id="first_name" type="text" formControlName="firstName" placeholder="" class="validate">
+          <label class="active" for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" formControlName="lastName" class="validate">
-          <label for="last_name">Last Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="user_age" type="number" formControlName="age" class="validate">
-          <label for="first_name">Age</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="user_gender" type="text" formControlName="gender" class="validate">
-          <label for="last_name">Gender</label>
+          <input id="last_name" type="text" formControlName="lastName" placeholder="" class="validate">
+          <label class="active" for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input id="username" type="text" formControlName="username" class="validate">
-          <label for="username">Login</label>
+          <input id="user_age" type="number" formControlName="age" placeholder="" class="validate">
+          <label class="active" for="first_name">Age</label>
         </div>
         <div class="input-field col s6">
-          <input id="password" type="password" formControlName="password" class="validate">
-          <label for="password">Password</label>
+          <input id="user_gender" type="text" formControlName="gender" placeholder="" class="validate">
+          <label class="active" for="last_name">Gender</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input [attr.disabled]="true" id="username" type="text" formControlName="username" placeholder="" class="validate">
+          <label class="active" for="username">Login</label>
+        </div>
+        <div class="input-field col s6">
+          <input [attr.disabled]="true" id="password" type="password" formControlName="password" placeholder="" class="validate">
+          <label class="active" for="password">Password</label>
         </div>
       </div>
       <button type="submit" [disabled]="loading" class="add-button btn-large waves-effect waves-light red left">

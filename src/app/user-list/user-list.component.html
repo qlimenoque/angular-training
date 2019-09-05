@@ -26,7 +26,7 @@
         </p>
         
         <div class="secondary-content"><a>
-          <i class="material-icons btn-small red edit-button" (click)="editUser(user.id)">edit</i>
+          <i class="material-icons btn-small red edit-button" [routerLink]="['edit', user.id]">edit</i>
           <i class="material-icons btn-small red waves-effect waves-light delete-button" (click)="deleteUser(user.id)">delete</i>
         </a>
         </div>
