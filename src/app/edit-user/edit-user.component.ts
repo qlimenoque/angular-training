@@ -61,6 +61,6 @@ export class EditUserComponent implements OnInit {
       gender: this.editUserForm.controls.gender.value
     };
 
-    return this.userService.updateUser(this.queryId, body);
+    return this.userService.updateUser(this.queryId, body).subscribe(result => this.router.navigate(['/users']));
   }
 }
