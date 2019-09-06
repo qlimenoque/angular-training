@@ -41,14 +41,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     if (this.loginForm.invalid) {
       return;
     }
-
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-    .pipe(first())
+    console.log('Login component submit');
+
+    const body = {
+      username: this.f.username.value,
+      password: this.f.password.value
+    };
+
+    this.authenticationService.login(body)
     .subscribe(
       data => {
         this.router.navigate([this.returnUri]);
