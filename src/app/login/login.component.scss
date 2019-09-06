@@ -10,7 +10,19 @@ $inputColor: red;
   line-height: 0;
 }
 
+label {
+  margin-left: 16px;
+}
+
+.input-field input {
+  padding-left: 8px;
+  width: 80%;
+}
+
 .input-field input:focus {
   border-bottom: 1px solid $inputColor;
   box-shadow: 0 1px 0 0 $inputColor;
+  padding-left: 10px;
+  width: 85%;
+  transition: 0.2s;
 }
