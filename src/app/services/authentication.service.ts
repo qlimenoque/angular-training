@@ -4,6 +4,7 @@ import {User} from '../models/user';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import {error} from 'util';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
