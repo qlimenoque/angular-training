@@ -9,9 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './helpers/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { Interceptor } from './helpers/interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
-import { fakeBackendProvider } from './helpers/fake-backend';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
@@ -45,11 +43,6 @@ export const appRoutingModule = RouterModule.forRoot(routes);
     ReactiveFormsModule,
     HttpClientModule,
     appRoutingModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
