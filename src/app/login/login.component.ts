@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    this.returnUri = this.route.snapshot.queryParams['returnUri'] || '/';
+    this.returnUri = this.route.snapshot.queryParams.returnUri || '/';
   }
 
   get f() { return this.loginForm.controls; }
@@ -45,8 +44,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    console.log('Login component submit');
-
     const body = {
       username: this.f.username.value,
       password: this.f.password.value
@@ -58,7 +55,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUri]);
       },
       error => {
-        this.error = error;
+        this.error = 'Username or password is incorrect';
         this.loading = false;
       }
     );
