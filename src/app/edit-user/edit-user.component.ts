@@ -43,7 +43,7 @@ export class EditUserComponent implements OnInit {
     );
     this.paramsSubscribe = this.route.params.subscribe(params => this.queryId = params.id);
 
-    this.userService.getUser(this.queryId).subscribe(res => {
+    this.userService.get(this.queryId).subscribe(res => {
       this.editUserForm.controls.username.setValue(res.username);
       this.editUserForm.controls.firstName.setValue(res.firstName);
       this.editUserForm.controls.lastName.setValue(res.lastName);
@@ -61,6 +61,6 @@ export class EditUserComponent implements OnInit {
       gender: this.editUserForm.controls.gender.value
     };
 
-    return this.userService.updateUser(this.queryId, body).subscribe(result => this.router.navigate(['/users']));
+    return this.userService.update(this.queryId, body).subscribe(result => this.router.navigate(['/users']));
   }
 }

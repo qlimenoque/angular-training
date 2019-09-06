@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {users} from '../helpers/fake-backend';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {AuthenticationService} from '../services/authentication.service';
 import {UserService} from '../services/user.service';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-user',
@@ -40,7 +37,7 @@ export class AddUserComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
       }
     );
-    this.returnUri = this.route.snapshot.queryParams['returnUri'] || '/users';
+    this.returnUri = this.route.snapshot.queryParams.returnUri || '/users';
   }
 
   get f() {
@@ -55,7 +52,7 @@ export class AddUserComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.newUser(this.addUserForm.value)
+    this.userService.create(this.addUserForm.value)
     .subscribe(data => this.router.navigate(['/users']), error => {
         this.loading = false;
       }
