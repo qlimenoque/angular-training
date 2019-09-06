@@ -15,7 +15,7 @@ export class UserService {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
-  newUser(user: User) {
+  create(user: User) {
     return this.http.post(`${environment.apiUrl}/users`, user);
   }
 
@@ -23,11 +23,11 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
   }
 
-  getUser(id) {
+  get(id) {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}}`);
   }
 
-  updateUser(id, body) {
+  update(id, body) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, body);
   }
 }
