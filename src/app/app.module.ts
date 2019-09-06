@@ -18,11 +18,11 @@ import { UserInfoComponent } from './user-info/user-info.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UserListComponent },
+  { path: 'users', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
-  { path: 'users/add', component: AddUserComponent, canActivate: [AuthGuard]},
+  { path: 'users/add', component: AddUserComponent, canActivate: [AuthGuard] },
   { path: 'users/:id', component: UserInfoComponent, canActivate: [AuthGuard] },
-  { path: 'users/edit/:id', component: EditUserComponent, canActivate: [AuthGuard]},
+  { path: 'users/edit/:id', component: EditUserComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 
