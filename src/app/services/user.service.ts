@@ -12,22 +12,22 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/api/users`);
   }
 
   create(user: User) {
-    return this.http.post(`${environment.apiUrl}/users`, user);
+    return this.http.post(`${environment.apiUrl}/api/users`, user);
   }
 
   delete(id) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`);
+    return this.http.delete(`${environment.apiUrl}/api/users/${id}`);
   }
 
   get(id) {
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}}`);
+    return this.http.get<User>(`${environment.apiUrl}/api/users/${id}}`);
   }
 
   update(id, body) {
-    return this.http.put(`${environment.apiUrl}/users/${id}`, body);
+    return this.http.put(`${environment.apiUrl}/api/users/${id}`, body);
   }
 }
